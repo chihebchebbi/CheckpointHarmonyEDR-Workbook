@@ -1,0 +1,281 @@
+{
+  "version": "Notebook/1.0",
+  "items": [
+    {
+      "type": 1,
+      "content": {
+        "json": "# CheckPoint Harmony Endpoint\n---\n<p align=\"center\">\n<img src=\"https://www.gartner.com/pi/vendorimages/check-point-software-tech_endpoint-protection-platforms_1615377309725.png\" alt=\"logo\" style=\"width:200px\"></a>\n</p>\nHarmony Endpoint is a complete endpoint security solution that prevents the most imminent threats to the endpoint such as ransomware, phishing or malware.\n"
+      },
+      "name": "text - 2"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "CommonSecurityLog\n| where DeviceVendor == \"Check Point\"\n| count",
+        "size": 4,
+        "title": "Events Count",
+        "timeContext": {
+          "durationMs": 86400000
+        },
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces",
+        "visualization": "tiles",
+        "tileSettings": {
+          "titleContent": {
+            "columnMatch": "Count",
+            "formatter": 12,
+            "formatOptions": {
+              "palette": "blue"
+            }
+          },
+          "showBorder": false
+        }
+      },
+      "customWidth": "20",
+      "name": "query - 1"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "CommonSecurityLog\n| where DeviceVendor == \"Check Point\"\n| summarize count() by bin(TimeGenerated,1h)",
+        "size": 1,
+        "title": "CheckPoint Events Overtime (Hourly)",
+        "timeContext": {
+          "durationMs": 86400000
+        },
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces",
+        "visualization": "areachart"
+      },
+      "customWidth": "80",
+      "name": "query - 2"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "CommonSecurityLog\n| where DeviceVendor == \"Check Point\"\n| summarize count() by DeviceProduct",
+        "size": 3,
+        "title": "CheckPoint Events by Module",
+        "timeContext": {
+          "durationMs": 86400000
+        },
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces",
+        "visualization": "piechart"
+      },
+      "customWidth": "33",
+      "name": "query - 3"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "CommonSecurityLog\n| where DeviceVendor == \"Check Point\"\n| summarize count() by DeviceEventClassID",
+        "size": 3,
+        "title": "CheckPoint Events by Action",
+        "timeContext": {
+          "durationMs": 86400000
+        },
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces",
+        "visualization": "piechart",
+        "chartSettings": {
+          "seriesLabelSettings": [
+            {
+              "seriesName": "Accept",
+              "color": "green"
+            },
+            {
+              "seriesName": "Log",
+              "color": "amethyst"
+            },
+            {
+              "seriesName": "Detect",
+              "color": "brown"
+            }
+          ]
+        }
+      },
+      "customWidth": "33",
+      "name": "query - 3 - Copy"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "CommonSecurityLog\n| where DeviceVendor == \"Check Point\"\n| summarize count() by Activity",
+        "size": 3,
+        "title": "CheckPoint Events by Activity",
+        "timeContext": {
+          "durationMs": 86400000
+        },
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces",
+        "visualization": "piechart",
+        "chartSettings": {
+          "seriesLabelSettings": [
+            {
+              "seriesName": "Accept",
+              "color": "green"
+            },
+            {
+              "seriesName": "Log",
+              "color": "amethyst"
+            },
+            {
+              "seriesName": "Detect",
+              "color": "brown"
+            }
+          ]
+        }
+      },
+      "customWidth": "33",
+      "name": "query - 3 - Copy - Copy"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "CommonSecurityLog\n| where DeviceVendor == \"Check Point\"\n| summarize count() by LogSeverity",
+        "size": 3,
+        "title": "CheckPoint Events by Severity",
+        "timeContext": {
+          "durationMs": 86400000
+        },
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces",
+        "visualization": "piechart",
+        "chartSettings": {
+          "seriesLabelSettings": [
+            {
+              "seriesName": "Unknown",
+              "color": "gray"
+            },
+            {
+              "seriesName": "Low",
+              "color": "yellow"
+            },
+            {
+              "seriesName": "High",
+              "color": "redBright"
+            },
+            {
+              "seriesName": "Very-High",
+              "color": "red"
+            },
+            {
+              "seriesName": "Medium",
+              "color": "orange"
+            }
+          ]
+        }
+      },
+      "customWidth": "25",
+      "name": "query - 6"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "CommonSecurityLog\n| where DeviceVendor == \"Check Point\"\n| summarize count() by SourceIP\n| order by count_ desc",
+        "size": 0,
+        "title": "TOP Sources",
+        "timeContext": {
+          "durationMs": 86400000
+        },
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces",
+        "gridSettings": {
+          "formatters": [
+            {
+              "columnMatch": "SourceIP",
+              "formatter": 18,
+              "formatOptions": {
+                "thresholdsOptions": "icons",
+                "thresholdsGrid": [
+                  {
+                    "operator": "Default",
+                    "thresholdValue": null,
+                    "representation": "View",
+                    "text": "{0}{1}"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "customWidth": "25",
+      "name": "query - 7"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "CommonSecurityLog\n| where DeviceVendor == \"Check Point\"\n| where LogSeverity has_any (\"High\",\"Very-High\")\n| project  SourceHostName, SourceIP, LogSeverity, AdditionalExtensions\n//| where isnotempty(FileHash)",
+        "size": 0,
+        "timeContext": {
+          "durationMs": 172800000
+        },
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces",
+        "gridSettings": {
+          "formatters": [
+            {
+              "columnMatch": "SourceHostName",
+              "formatter": 18,
+              "formatOptions": {
+                "thresholdsOptions": "icons",
+                "thresholdsGrid": [
+                  {
+                    "operator": "Default",
+                    "thresholdValue": null,
+                    "representation": "Initial_Access",
+                    "text": "{0}{1}"
+                  }
+                ]
+              }
+            },
+            {
+              "columnMatch": "LogSeverity",
+              "formatter": 18,
+              "formatOptions": {
+                "thresholdsOptions": "colors",
+                "thresholdsGrid": [
+                  {
+                    "operator": "==",
+                    "thresholdValue": "High",
+                    "representation": "redBright",
+                    "text": "{0}{1}"
+                  },
+                  {
+                    "operator": "contains",
+                    "thresholdValue": "Very",
+                    "representation": "red",
+                    "text": "{0}{1}"
+                  },
+                  {
+                    "operator": "Default",
+                    "thresholdValue": null,
+                    "representation": "gray",
+                    "text": "{0}{1}"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "customWidth": "50",
+      "name": "query - 8"
+    }
+  ],
+  "fallbackResourceIds": [
+    ""
+  ],
+  "fromTemplateId": "sentinel-UserWorkbook",
+  "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/workbook.json"
+}
