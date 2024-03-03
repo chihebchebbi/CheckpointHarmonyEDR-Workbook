@@ -1,1 +1,1 @@
-# CheckpointHarmonyEDR-Workbook
+# Checkpoint Harmony EDR - Microsoft Sentinel Workbook
